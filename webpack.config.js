@@ -9,6 +9,15 @@ module.exports = {
     'html.worker': 'monaco-editor/esm/vs/language/html/html.worker',
     'ts.worker': 'monaco-editor/esm/vs/language/typescript/ts.worker'
   },
+  output: {
+    path: path.resolve(__dirname, '../dist/arkeos-monaco-editor'),
+    globalObject: 'self',
+    filename: '[name].js',
+    library: {
+        name: 'arkeos-monaco-editor',
+        type: 'umd',
+    },
+  },
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -52,15 +61,6 @@ module.exports = {
         ]
       }
     ],
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    globalObject: 'self',
-    filename: '[name].js',
-    library: {
-        name: 'arkeos-monaco-editor',
-        type: 'umd',
-    },
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],

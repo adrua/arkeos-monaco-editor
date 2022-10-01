@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "outDir": "./dist/",
+      "outDir": "../dist/arkeos-monaco-editor/",
       "sourceMap": true,
       "noImplicitAny": true,
       "module": "None",
@@ -8,6 +8,8 @@
       "jsx": "react",
       "allowJs": true,
       "moduleResolution": "node",
+      "declaration": true,
+      "declarationDir": "../dist/arkeos-monaco-editor/",
       "typeRoots": [ 
         "./node_modules/@types",
         "./src/assets/arkeos-support/src/**"
