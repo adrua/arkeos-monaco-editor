@@ -1,0 +1,36 @@
+<div id="libary-test"></div>
+
+<div>
+    <arkeos-monaco-editor language="ts">
+        <pre>var x = {
+    a: 1;
+    b: "this"
+};
+
+console.log(x);</pre>
+    </arkeos-monaco-editor>
+</div>
+
+<script src="./dist/x-tag-raw.min.js" ></script>
+<script src="./dist/index.js" ></script>
+
+<script>
+    let library = "arkeos-monaco-editor"
+    var div = document.querySelector('#libary-test');
+    var myLib = window[library];
+    var exports = Object.keys(myLib).reduce((acum, element) => `
+    ${acum}<tr><th/><th>${element}</th><th>${myLib[element].version}</th></tr>
+`, '');
+    div.innerHTML += `<table>
+<tr>
+    <th>Library</th><th>Loaded</th>        
+</tr>
+<tr>
+    <th>${library}</th><th>${!!myLib}</th>        
+</tr>
+<tbody>
+${exports}
+</tbody>
+</table>
+`
+</script>
