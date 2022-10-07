@@ -3,7 +3,8 @@
   "version": "2022.1001.951",
   "description": "",
   "main": "index.ts",
-  "module": "../dist/arkeos-monaco-editor/index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
   "scripts": {
     "build": "yarn webpack --mode development",
     "build-prod": "yarn webpack --mode production",
