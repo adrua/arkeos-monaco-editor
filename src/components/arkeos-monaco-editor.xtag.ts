@@ -34,17 +34,37 @@ export class ArkeosMonacoEditor extends XTagElement  {
     }
 
     set 'options::attr'(val: monaco.editor.IEditorOptions & monaco.editor.IGlobalEditorOptions) {
-        if(typeof(val) === "string") {
-            val = JSON.parse(val);
-        }
-
-        this._options = val as unknown as any;
-
-        this.editor?.updateOptions(val);
+        this.setOptions(val);
     }
 
     get 'options::attr'(): monaco.editor.IEditorOptions & monaco.editor.IGlobalEditorOptions {
+        return this.getOptions();
+    }
+
+    setOptions(val: monaco.editor.IEditorOptions & monaco.editor.IGlobalEditorOptions) {
+        if(val && (val as string) !== "[object Object]") {
+            if(typeof(val) === "string") {
+                val = JSON.parse(val);
+            }
+
+            this._options = val as unknown as any;
+
+            this.editor?.updateOptions(val);
+        }
+    }
+
+    getOptions(): monaco.editor.IEditorOptions & monaco.editor.IGlobalEditorOptions {
         return this.editor.getOptions() as monaco.editor.IEditorOptions;
+    }
+
+    set 'source::attr'(val: string) {
+        this.promise.then(() => {
+            this.editor.setValue(val);
+        });
+    }
+
+    get 'source::attr'(): string {
+        return this.editor?.getValue();
     }
 
     '::template'() {
